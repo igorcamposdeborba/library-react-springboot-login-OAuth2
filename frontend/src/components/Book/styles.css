@@ -1,0 +1,58 @@
+.grid {
+    width: 100%;
+}
+
+.col {
+    float: left;
+    width: 25%;
+    height: auto;
+    padding-bottom: 15px;
+}
+img:hover {
+    box-shadow: 0 0 15px rgba(2, 2, 2, 0.2); 
+    opacity: 0.95;
+  }
+
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.reduceImage {
+    height: 400px;
+}
+
+@media(max-width: 1300px) {
+    .reduceImage {
+        height: 330px;
+    }
+}
+@media(max-width: 1150px) {
+    .reduceImage {
+        height: 280px;
+    }
+    .col {
+        width: 33%;
+    }
+
+
+}
+@media(max-width: 900px) {
+    .reduceImage {
+        height: 400px;
+    }
+
+    .col {
+        width: 50%;
+    }
+
+
+}
+@media(max-width: 840px) {
+    .col {
+        width: 100%;
+    }
+
+
+}

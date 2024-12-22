@@ -1,0 +1,19 @@
+.logo {
+    background-image: url("../../images/logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 63px;
+    width: 70px;
+    height: inherit;
+}
+
+a {
+    width: 70px;
+    height: 90px;
+}
+
+.logo:hover{
+    filter: grayscale(100%);
+    cursor: pointer;
+}
+

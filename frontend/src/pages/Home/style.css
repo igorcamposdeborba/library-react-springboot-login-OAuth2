@@ -1,0 +1,8 @@
+.page div.logoBox {
+    background-color: rgb(2, 149, 149);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+
+}

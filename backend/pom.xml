@@ -9,11 +9,11 @@
 		<relativePath />
 		<!--  lookup parent from repository  -->
 	</parent>
-	<groupId>com.devsuperior</groupId>
-	<artifactId>bds03</artifactId>
+	<groupId>com.igorborba</groupId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bds03</name>
-	<description>Bootcamp Spring React DevSuperior</description>
+	<name>Library</name>
+	<description>Gerenciamento de Biblioteca com Login e consumo de API de terceiros</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
