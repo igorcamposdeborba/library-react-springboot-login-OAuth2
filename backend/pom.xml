@@ -10,10 +10,10 @@
 		<!--  lookup parent from repository  -->
 	</parent>
 	<groupId>com.igorborba</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>library</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Library</name>
-	<description>Gerenciamento de Biblioteca com Login e consumo de API de terceiros</description>
+	<name>library</name>
+	<description>Biblioteca com login e consumo de api de terceiros</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
