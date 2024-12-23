@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import com.igorborba.dto.BookDTO;
 
+import java.util.Locale;
+
 @Entity
 @Table(name = "tb_book")
 public class Book {
@@ -26,7 +28,7 @@ public class Book {
 		super();
 		this.id = id;
 		this.author = author;
-		this.surname = surname;
+		this.surname = surname.toUpperCase(Locale.ROOT);
 		this.title = title;
 		this.publisher = publisher;
 		this.edition = edition;
@@ -36,9 +38,10 @@ public class Book {
 	public Book(BookDTO book) {
 		id = book.getId();
 		author = book.getAuthor();
-		surname = book.getSurname();
+		surname = book.getSurname().toUpperCase(Locale.ROOT);
 		title = book.getTitle();
 		publisher = book.getPublisher();
+		edition = book.getEdition();
 		year = book.getYear();
 	}
 	
