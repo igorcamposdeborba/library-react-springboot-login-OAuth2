@@ -36,30 +36,16 @@ const Signup = () => {
         }
     
         try {
-            const response = await fetch("/oauth/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ firstName, lastName, email, password }),
-            });
-    
-            if (!response.ok) {
-                const errorData = await response.json();
-    
-                // Verificar se há mensagens personalizadas no erro
-                if (errorData.errorMessageCustomized?.length > 0) {
-                    setError(
-                        errorData.errorMessageCustomized
-                            .map((err) => err.message)
-                            .join(" | ")
-                    );
-                } else {
-                    setError(errorData.message || "Erro desconhecido.");
-                }
+            const response = await signup(firstName, lastName, email, password); // Comunicacao com back-end: cadastro na lógica global do auth.js que está no topo da hierarquia de rotas
+            
+            if (response && response.error) {
+                setError(response.error);
                 return;
             }
     
+            const responseData = await response.json();
+            localStorage.setItem("auth_token", responseData.token); // Armazenar token no localStorage
+
             setToastMessage("Cadastro realizado com sucesso!");
             setShowToast(true);
     

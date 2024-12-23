@@ -39,6 +39,7 @@ public class Book {
 		surname = book.getSurname();
 		title = book.getTitle();
 		publisher = book.getPublisher();
+		edition = book.getEdition();
 		year = book.getYear();
 	}
 	

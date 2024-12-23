@@ -29,11 +29,11 @@ export const AuthProvider = ({ children }) => {
                         setUser(hasUser);
                         setToken(storedToken);
                     } else {
-                        console.warn("Usuário correspondente ao token não encontrado.");
+                        return "Usuário correspondente ao token não encontrado.";
                     }
                 }
             } catch (error) {
-                console.error("Erro ao processar o token ou os usuários:", error);
+                return "Erro ao processar o token ou os usuários:" + error;
             }
         }
     }, []);  // Executa uma vez ao carregar o componente

@@ -1,3 +1,14 @@
+# CRUD integrated to back-end, API to show book and Login with React and LocalStorage
+
+- Project name: Library
+- About the project: Desenvolvimento de um sistema de CRUD para o back-end, API de terceiros para mostrar catálogo e login com React e vídeo explicativo.
+- Status: concluído
+- Functionalities: login e cadastro com LocalStorage, CRUD com JSON server e requisições com axios, exibição de imagens com API de terceiros.
+- How to use: Digite npm start na pasta principal do projeto
+- Video to explanation the code: https://unisinos.instructuremedia.com/embed/90b8085f-8995-4163-9d66-77b3ba04a30c
+- Files in GitHub: https://github.com/igorcamposdeborba/react-login-crud-and-api
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

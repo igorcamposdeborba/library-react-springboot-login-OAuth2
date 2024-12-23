@@ -25,12 +25,11 @@ const RoutesApp = () => {
                     <Route exact path="/" element={<Signin />} />
                     <Route exact path="/signup" element={<Signup />} />
                     <Route exact path="/books" element={<Private Item={BookCrud} />} />
+                    <Route path="*" element={<Signin />} />  {/* Redirecione qualquer outra página digitada pelo usuário para o login */}
                 </Routes>
             </Fragment>
         </BrowserRouter>
     )
 }
-
-// <Route path="*" element={<Signin />} /> // Redirecione qualquer outra página digitada pelo usuário para o login
 
 export default RoutesApp;
