@@ -37,7 +37,7 @@ const Signup = () => {
 
         try {
             const result = await signup(firstName, lastName, email, password);
-            
+
             if (typeof result === "string") {
                 setError(result);
                 return;
