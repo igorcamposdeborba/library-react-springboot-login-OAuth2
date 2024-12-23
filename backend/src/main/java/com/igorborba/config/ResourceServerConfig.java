@@ -23,7 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private JwtTokenStore tokenStore;
 
 	// Rotas (path da URL):
-	private static final String[] ROUTES = {"/oauth/**", "/oauth/token", "/oauth/signup", "/signup**", "/signin**", "/h2-console/**",
+	private static final String[] PUBLIC = {"/oauth/**", "/oauth/token", "/oauth/signup", "/signup**", "/signin**", "/h2-console/**",
 											"/book**", "/books/**", "/actuator/**"};
 
 	// Verifica o token JWT
@@ -43,7 +43,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		http.cors() // Cors configurado na classe CorsConfig
 				.and()
 				.authorizeRequests()
-				.antMatchers(ROUTES).permitAll() // Permitir acesso as rotas
+				.antMatchers(PUBLIC).permitAll() // Permitir acesso a todas as rotas públicas
 				.antMatchers(HttpMethod.GET).hasAnyRole("OPERATOR", "ADMIN")
 				.anyRequest().hasAnyRole("ADMIN"); // se usuário acessar qualquer outra rota, ele tem que estar logado
 	}

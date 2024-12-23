@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Toast, ToastContainer } from 'react-bootstrap';
+import { Toast, ToastContainer } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
 import Logo from "../../components/Logo";
@@ -18,37 +18,34 @@ const Signup = () => {
         password: "",
     });
 
-    const [error, setError] = useState(""); // Erro do formulario 
-    const [showToast, setShowToast] = useState(false); // Estado para controlar a exibição da notificação
-    const [toastMessage, setToastMessage] = useState(''); // Mensagem da notificação
+    const [error, setError] = useState("");
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
 
     const handleSignup = async () => {
         const { firstName, lastName, email, emailConfirm, password } = formData;
-    
+
         if (!firstName || !lastName || !email || !emailConfirm || !password) {
             setError("Preencha todos os campos");
             return;
         }
-    
+
         if (email !== emailConfirm) {
             setError("Os emails não são iguais");
             return;
         }
-    
+
         try {
-            const response = await signup(firstName, lastName, email, password); // Comunicacao com back-end: cadastro na lógica global do auth.js que está no topo da hierarquia de rotas
+            const result = await signup(firstName, lastName, email, password);
             
-            if (response && response.error) {
-                setError(response.error);
+            if (typeof result === "string") {
+                setError(result);
                 return;
             }
-    
-            const responseData = await response.json();
-            localStorage.setItem("auth_token", responseData.token); // Armazenar token no localStorage
 
             setToastMessage("Cadastro realizado com sucesso!");
             setShowToast(true);
-    
+
             setTimeout(() => navigate("/"), 1700);
         } catch (err) {
             setError("Erro ao conectar com o servidor. Tente novamente.");
@@ -126,7 +123,7 @@ const Signup = () => {
                 </C.LabelSignin>
             </C.Content>
 
-            {/* Notificacao */}
+            {/* Notificação */}
             <ToastContainer position="top-end" className="p-3">
                 <Toast onClose={() => setShowToast(false)} show={showToast} delay={2000} autohide>
                     <Toast.Header>

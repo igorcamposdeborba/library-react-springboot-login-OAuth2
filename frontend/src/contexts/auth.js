@@ -29,11 +29,11 @@ export const AuthProvider = ({ children }) => {
                         setUser(hasUser);
                         setToken(storedToken);
                     } else {
-                        return "Usuário correspondente ao token não encontrado.";
+                        console.warn("Usuário correspondente ao token não encontrado.");
                     }
                 }
             } catch (error) {
-                return "Erro ao processar o token ou os usuários:" + error;
+                console.error("Erro ao processar o token ou os usuários:", error);
             }
         }
     }, []);  // Executa uma vez ao carregar o componente
@@ -84,25 +84,35 @@ export const AuthProvider = ({ children }) => {
     // Método para CADASTRAR usuário
     const signup = async (firstName, lastName, email, password) => {
         try {
-            const response = await fetch("http://localhost:8080/oauth/signup", {
+            const response = await fetch("/oauth/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ firstName, lastName, email, password }),
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                return data;  // Retorna os dados do cadastro, como o usuário criado ou um token
-            } else {
-                const error = await response.json();
-                return error.message || "Erro ao realizar cadastro.";
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+    
+                // Verificar se há mensagens personalizadas no erro
+                if (errorData.errorMessageCustomized?.length > 0) {
+                    return errorData.errorMessageCustomized
+                        .map((err) => err.message)
+                        .join(" | ");
+                } else {
+                    return errorData.message || "Erro desconhecido.";
+                }
             }
+    
+            // Se o cadastro for bem-sucedido, retornamos os dados do usuário criado
+            const data = await response.json();
+            return data;
         } catch (err) {
-            return "Erro ao conectar ao servidor.";
+            return "Erro ao conectar com o servidor. Tente novamente.";
         }
     };
+    
 
     // Método para DESLOGAR usuário
     const signout = () => {
