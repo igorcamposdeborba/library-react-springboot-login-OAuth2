@@ -23,19 +23,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private JwtTokenStore tokenStore;
 
 	// Rotas (path da URL):
-	private static final String[] PUBLIC_ROUTES = {
-			"/oauth/**",
-			"/oauth/token",
-			"/oauth/signup",
-			"/signup**",
-			"/signin**",
-			"/h2-console/**",
-			"/actuator/**"
-	};
-
-	private static final String[] OPERATOR_OR_ADMIN_ROUTES = {
-			"/book**",
-			"/books/**"
+	private static final String[] PUBLIC_ROUTES = { "/oauth/**", "/oauth/token", "/oauth/signup", "/signup**", "/signin**", "/h2-console/**", "/actuator/**" };
+	private static final String[] OPERATOR_OR_ADMIN_ROUTES = { "/book**", "/books/**"
 	};
 
 	// Verifica o token JWT
