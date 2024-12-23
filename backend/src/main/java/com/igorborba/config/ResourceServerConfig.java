@@ -23,8 +23,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private JwtTokenStore tokenStore;
 
 	// Rotas (path da URL):
-	private static final String[] PUBLIC = {"/oauth/**", "/oauth/token", "/oauth/signup", "/signup**", "/signin**", "/h2-console/**",
-											"/book**", "/books/**", "/actuator/**"};
+	private static final String[] PUBLIC_ROUTES = {
+			"/oauth/**",
+			"/oauth/token",
+			"/oauth/signup",
+			"/signup**",
+			"/signin**",
+			"/h2-console/**",
+			"/actuator/**"
+	};
+
+	private static final String[] OPERATOR_OR_ADMIN_ROUTES = {
+			"/book**",
+			"/books/**"
+	};
 
 	// Verifica o token JWT
 	@Override
@@ -36,15 +48,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		// liberar rota (url) do H2
-		if(Arrays.asList(environment.getActiveProfiles()).contains("test")) {
+		if (Arrays.asList(environment.getActiveProfiles()).contains("test")) {
 			http.headers().frameOptions().disable();
 		}
 
 		http.cors() // Cors configurado na classe CorsConfig
 				.and()
 				.authorizeRequests()
-				.antMatchers(PUBLIC).permitAll() // Permitir acesso a todas as rotas públicas
-				.antMatchers(HttpMethod.GET).hasAnyRole("OPERATOR", "ADMIN")
-				.anyRequest().hasAnyRole("ADMIN"); // se usuário acessar qualquer outra rota, ele tem que estar logado
+				.antMatchers(PUBLIC_ROUTES).permitAll() // Permitir acesso às rotas públicas
+				.antMatchers(OPERATOR_OR_ADMIN_ROUTES).hasAnyAuthority("ROLE_OPERATOR", "ROLE_ADMIN") // Acesso privado para estas rotas
+				.anyRequest().hasAuthority("ROLE_ADMIN"); // Apenas ADMIN para todas as outras rotas
 	}
 }
